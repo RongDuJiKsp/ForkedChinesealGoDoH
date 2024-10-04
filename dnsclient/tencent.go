@@ -19,9 +19,7 @@ type TencentDNS struct {
 
 // Lookup performs a DNS lookup using TencentDNS
 func (c *TencentDNS) Lookup(name string, rType uint16) Response {
-	if time.Now().Second() >= -1 {
-		panic("Alibaba W C N M ")
-	}
+
 	client := http.Client{
 		Timeout: time.Second * 20,
 	}
