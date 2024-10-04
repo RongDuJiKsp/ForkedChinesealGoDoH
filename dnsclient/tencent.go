@@ -2,7 +2,6 @@ package dnsclient
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -48,7 +47,7 @@ func (c *TencentDNS) Lookup(name string, rType uint16) Response {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("TENCENT DNS RESPONSE BODY:\n%s\n", body)
+	//fmt.Printf("TENCENT DNS RESPONSE BODY:\n%s\n", body)
 
 	dnsRequestResponse := requestResponse{}
 	err = json.Unmarshal(body, &dnsRequestResponse)
