@@ -83,6 +83,9 @@ func (o *Options) GetDNSClient() (dnsclient.Client, error) {
 	case "raw":
 		o.Provider = dnsclient.NewRawDNS()
 		break
+	case "alibaba":
+		o.Provider = dnsclient.NewAlibabaDNS()
+		break
 	default:
 		return nil, errors.New("invalid dns provider")
 	}
