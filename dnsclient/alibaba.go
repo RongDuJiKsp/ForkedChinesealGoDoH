@@ -34,7 +34,6 @@ func (c *AlibabaDNS) Lookup(name string, rType uint16) Response {
 	q.Add("name", name)
 	q.Add("type", strconv.Itoa(int(rType)))
 	q.Add("cd", "false") // ignore DNSSEC
-	q.Add("do", "false") // ignore DNSSEC
 	req.URL.RawQuery = q.Encode()
 	// fmt.Println(req.URL.String())
 
