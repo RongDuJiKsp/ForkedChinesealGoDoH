@@ -29,7 +29,7 @@ func NewQuad9DNS() *Quad9DNS {
 
 // NewAlibabaDNS  starts a new Cloudflare DNS-over-HTTPS resolver Client
 func NewAlibabaDNS() *AlibabaDNS {
-	return &AlibabaDNS{BaseURL: "https://dns.alidns.com/dns-query"}
+	return &AlibabaDNS{BaseURL: "https://dns.alidns.com/resolve"}
 }
 
 // NewRawDNS starts a new client making use of traditional DNS

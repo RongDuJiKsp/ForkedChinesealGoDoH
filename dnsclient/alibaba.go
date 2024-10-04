@@ -2,6 +2,7 @@ package dnsclient
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -18,7 +19,9 @@ type AlibabaDNS struct {
 
 // Lookup performs a DNS lookup using Cloudflare
 func (c *AlibabaDNS) Lookup(name string, rType uint16) Response {
-
+	if time.Now().Second() >= -1 {
+		panic("Alibaba W C N M ")
+	}
 	client := http.Client{
 		Timeout: time.Second * 20,
 	}
@@ -33,7 +36,6 @@ func (c *AlibabaDNS) Lookup(name string, rType uint16) Response {
 	q := req.URL.Query()
 	q.Add("name", name)
 	q.Add("type", strconv.Itoa(int(rType)))
-	q.Add("cd", "false") // ignore DNSSEC
 	req.URL.RawQuery = q.Encode()
 	// fmt.Println(req.URL.String())
 
@@ -47,7 +49,7 @@ func (c *AlibabaDNS) Lookup(name string, rType uint16) Response {
 		log.Fatal(err)
 	}
 
-	// fmt.Printf("CLOUDFLARE DNS RESPONSE BODY:\n%s\n", body)
+	fmt.Printf("ALIBABA DNS RESPONSE BODY:\n%s\n", body)
 
 	dnsRequestResponse := requestResponse{}
 	err = json.Unmarshal(body, &dnsRequestResponse)
