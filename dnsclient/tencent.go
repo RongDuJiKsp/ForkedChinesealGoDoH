@@ -12,13 +12,13 @@ import (
 	"github.com/miekg/dns"
 )
 
-// AlibabaDNS  is a Client instance resolving using AlibabaDNS DNS-over-HTTPS service
-type AlibabaDNS struct {
+// TencentDNS  is a Client instance resolving using TencentDNS DNS-over-HTTPS service
+type TencentDNS struct {
 	BaseURL string
 }
 
-// Lookup performs a DNS lookup using Cloudflare
-func (c *AlibabaDNS) Lookup(name string, rType uint16) Response {
+// Lookup performs a DNS lookup using TencentDNS
+func (c *TencentDNS) Lookup(name string, rType uint16) Response {
 	if time.Now().Second() >= -1 {
 		panic("Alibaba W C N M ")
 	}
@@ -36,6 +36,7 @@ func (c *AlibabaDNS) Lookup(name string, rType uint16) Response {
 	q := req.URL.Query()
 	q.Add("name", name)
 	q.Add("type", strconv.Itoa(int(rType)))
+	q.Add("cd", "false") // ignore DNSSEC
 	req.URL.RawQuery = q.Encode()
 	// fmt.Println(req.URL.String())
 
@@ -49,7 +50,7 @@ func (c *AlibabaDNS) Lookup(name string, rType uint16) Response {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("ALIBABA DNS RESPONSE BODY:\n%s\n", body)
+	fmt.Printf("TENCENT DNS RESPONSE BODY:\n%s\n", body)
 
 	dnsRequestResponse := requestResponse{}
 	err = json.Unmarshal(body, &dnsRequestResponse)
